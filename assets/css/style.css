@@ -1,29 +1,17 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
-nav ul a,
-nav .brand-logo {
-  color: #444;
+html {
+  font-family:;
 }
 
 p {
   line-height: 2rem;
 }
 
-.button-collapse {
-  color: #26a69a;
-}
-
 .parallax-container {
   min-height: 380px;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,.9);
+  font-color: white;
+  background-color: black;
 }
   .parallax-container .section {
     width: 100%;
@@ -54,4 +42,6 @@ p {
 
 footer.page-footer {
   margin: 0;
+  background-color: black;
+  font-color: white;
 }
