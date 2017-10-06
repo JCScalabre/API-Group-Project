@@ -52,8 +52,8 @@ $.ajax({
 
 
 var map = new google.maps.Map(document.getElementById('map'), {
-	zoom: 3,
-	center: new google.maps.LatLng(-33.92, 151.25),
+	zoom: 11,
+	center: new google.maps.LatLng(41.8781, -87.6298),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 
@@ -71,7 +71,7 @@ var marker, i;
 
 function initAutocomplete() {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -33.8688, lng: 151.2195},
+		center: {lat: 41.8781, lng:-87.6298},
 		zoom: 13,
 		mapTypeId: 'roadmap'
 	});
