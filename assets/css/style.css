@@ -1,4 +1,7 @@
 html {
+  background-color: #0A233A;
+  color: #fff;
+  margin: auto;
   /*font-family: 'Kanit', sans-serif; */
   
   /*font-family: 'Bevan', cursive;*/
@@ -39,7 +42,7 @@ p {
     top: 40%;
   }
   #index-banner .section {
-    top: 10%;
+    top: 5%;
   }
 }
 
