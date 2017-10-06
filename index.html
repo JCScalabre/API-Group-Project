@@ -25,62 +25,14 @@
      <h1 class="header center white-text text-lighten-2">CRIME CONSCIOUS
       <div class="row center"><br>
         <h5 class="header col s12 light"></h5>
-        
       </div>
-
-      
     </div>
-
   </div>
 </div>
-<!-- User Input Section -->
-<!-- <div class="container">
-  <div class="section">
-    <div class="col s12">
-      <div class="icon-block">
-        <h2 class="center black-text"></h2>
-        <h5 class="left">Location</h5><br><br>
-        <div class="col 6">
-          <p class="center">
-           <div class="input-field col s6">
-            <i class="material-icons prefix">add_location</i>
-            <input id="icon_add_location" type="tel" class="validate">
-            <label for="icon_add_location">Where are you?</label>
-          </div>
-        </p>
-      </div>
-    </div>
-    <div class="col s12">
-      <div class="icon-block">
-        <h2 class="center black-text"></h2>
-        <h5 class="left">Crime</h5><br><br>
-      </div>
-    </div>
-    <div class="col s12">
-      <div class="icon-block">
-        <h2 class="center black-text"></h2>
-        <h5 class="left">Dates</h5><br><br>
-        <div class="col 6">
-          <p class="center">
-           <div class="input-field col s6">
-            <i class="material-icons prefix">date_range</i>
-            <input id="icon_add_location" type="tel" class="validate">
-            <label for="icon_add_location">When did it happen?</label>
-          </div>
-        </p>
-      </div>
-      <div class="parallax-container valign-wrapper">
-        <div class="section no-pad-bot">
-          <div class="container">
-            <div class="row center">
-              <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      <br><br><br>
-    </div>
-  </div>
+</div>
+<br><br><br>
+</div>
+</div>
 </div>
 
 <div class="row center center center-align">
@@ -92,9 +44,47 @@
 </div>
 
 <!--   Map   -->
-<div id="map" class="valign-wrapper" style="width: 100%; height: 600px;"></div>
+<div class="filter-container">
+  <div id="map" class="valign-wrapper" style="width: 100%; height: 600px;"></div>
+  <div class="filters">
+    <ul>
+      <li>
+        <label class="list-heading">Type of Crime</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Choose crime</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <label class="list-heading">Year</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Choose crime</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <label class="list-heading">Radius</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Choose crime</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
 
-
+<!-- Footer -->
 <footer class="page-footer black">
   <div class="container">
     <div class="row">
@@ -103,10 +93,6 @@
         <p class="white-text">We are a team of coding bootcampers at Northwestern working overtime to get this damn site to actually work.</p>
       </div>
     </div>
-
-<!--     <div class="parallax"><img src="assets/images/background3.jpg" alt="Unsplashed background img 3"></div>
- -->
-
   </div>
   <div class="footer-copyright">
     <div class="container">

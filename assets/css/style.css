@@ -148,3 +148,40 @@ html, body {
 #target {
   width: 345px;
 }
+
+
+/* Filters */
+
+.infoBox {
+    background: #ffffff !important;
+    font-size: 16px !important;
+    padding: 20px !important;
+    color: #000000 !important;
+    width: 200px !important;
+}
+
+.infoBox h3 {
+    margin-top: 0 !important;
+}
+
+.filter-container {
+  position: relative;
+}
+.filters {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 30px; 
+    right: 20px;
+    z-index: 99;
+    float: right;
+}
+
+.browser-default {
+    color: #000000;
+}
+
+.list-heading {
+  color: #51c9e1;
+  font-size: 15px;
+}
