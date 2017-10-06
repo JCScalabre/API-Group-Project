@@ -14,7 +14,7 @@
 * JC Scalabre
 
 ## Scrum Master: 
-* Julia Reed
+* Nick Vree
 
 
 ## Summary
