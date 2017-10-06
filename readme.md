@@ -2,18 +2,18 @@
 
 # Contributors/Roles
 
-##Git: 
+## Git: 
 * JC Scalabre
 
-##Front-End: 
+## Front-End: 
 * Julia Reed
 * Nick Vree
 * Edge Quintanilla???
 
-##Back-end
+## Back-end
 * JC Scalabre
 
-##Scrum Master: 
+## Scrum Master: 
 * Julia Reed
 
 
