@@ -1,8 +1,21 @@
-Git: JC Scalabre
+# Project Name: Crime Conscious - Stay Woke
 
-Front-End: Julia Reed
-Front-End: Nick Vree
+# Contributors/Roles
 
-Scrum Master: Julia Reed
+##Git: 
+* JC Scalabre
 
-Test Name: Ali Arfeen
+##Front-End: 
+* Julia Reed
+* Nick Vree
+* Edge Quintanilla???
+
+##Back-end
+* JC Scalabre
+
+##Scrum Master: 
+* Julia Reed
+
+
+## Summary
+Our project enables (who) to do (what), by (how)
