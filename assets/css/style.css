@@ -84,6 +84,10 @@ html, body {
   font-weight: 300;
 }
 
+.gm-style-iw {
+  color: #000;
+}
+
 #infowindow-content .title {
   font-weight: bold;
 }

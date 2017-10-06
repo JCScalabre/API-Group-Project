@@ -56,6 +56,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
             {
                 "color": "#ffffff"
             }
+            
         ]
     },
     {
@@ -67,6 +68,10 @@ var map = new google.maps.Map(document.getElementById('map'), {
             },
             {
                 "lightness": 13
+            },
+            {
+                "visibility": "off"
+                
             }
         ]
     },
@@ -104,6 +109,15 @@ var map = new google.maps.Map(document.getElementById('map'), {
         ]
     },
     {
+            "featureType": "poi",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+    {
         "featureType": "poi",
         "elementType": "geometry",
         "stylers": [
@@ -112,6 +126,11 @@ var map = new google.maps.Map(document.getElementById('map'), {
             },
             {
                 "lightness": 5
+
+            },
+            {
+                "visibility": "off"
+                
             }
         ]
     },
@@ -171,7 +190,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
         "elementType": "all",
         "stylers": [
             {
-                "color": "#146474"
+                "color": "#51c9e1"
             }
         ]
     },
