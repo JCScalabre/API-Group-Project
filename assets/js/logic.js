@@ -321,3 +321,51 @@ map.fitBounds(bounds);
     //     });
     // };
 
+
+//***//Global Variables - Don't Delete
+
+var crimeOptions = ["ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
+var radiusOptions = [.5,1,3,5,10]
+var currentDate = new Date()
+
+//***//Functions - Don't Delete
+
+
+function buildDropDownOptions(){
+
+    //build dropdown options for Type of Crime
+    for(var j = 0; j<crimeOptions.length; j++){
+
+        var newOption = $('<option>')
+        newOption.html(crimeOptions[j])
+        newOption.attr("value", crimeOptions[j])
+        $("#crime-type-dropdown").append(newOption)
+    }
+
+    //build dropdown options for Year
+    for(var j = 2001; j<=currentDate.getFullYear(); j++){
+        
+        var newOption = $('<option>')
+        newOption.html(j)
+        newOption.attr("value", j)
+        $("#year-dropdown").append(newOption)
+    }
+
+    //build dropdown options for Radius
+    for(var j=0; j<radiusOptions.length; j++){
+        
+        var newOption = $('<option>')
+        newOption.html(radiusOptions[j])
+        newOption.attr("value", radiusOptions[j])
+        $("#radius-dropdown").append(newOption)
+    }
+}
+
+
+//***//Startup Logic
+
+buildDropDownOptions();
+
+
+
+//***//Delete -- ??
