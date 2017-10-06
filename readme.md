@@ -10,11 +10,11 @@
 * Nick Vree
 * Edge Quintanilla???
 
-## Back-end
+## Back-End
 * JC Scalabre
 
 ## Scrum Master: 
-* Julia Reed
+* Nick Vree
 
 
 ## Summary
