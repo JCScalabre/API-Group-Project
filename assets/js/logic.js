@@ -57,9 +57,6 @@ var map = new google.maps.Map(document.getElementById('map'), {
         {
             "color": "#ffffff"
         }
-            {
-                "color": "#ffffff"
-            }
             
         ]
     },
@@ -72,13 +69,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
         },
         {
             "lightness": 13
-        }
-            {
-                "color": "#000000"
-            },
-            {
-                "lightness": 13
-            },
+        },
             {
                 "visibility": "off"
                 
@@ -137,7 +128,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
         },
         {
             "lightness": 5
-        }
+        },
 
             {
                 "color": "#0c4152"
@@ -210,7 +201,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 
         {
             "color": "#146474"
-        }
+        },
 
             {
                 "color": "#51c9e1"
