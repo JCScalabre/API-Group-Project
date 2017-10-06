@@ -14,7 +14,7 @@ var longitude = -87.631749
 var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
 console.log(datequeryURL);
 
-var object = {};
+var results = {};
 
 // AJAX Request:
 $.ajax({
@@ -25,18 +25,41 @@ $.ajax({
 	results = response;
 	for (var i = 0; i < response.length; i++) {
 
-		object[i] = {
+		results[i] = {
 			"Date": response[i].date,
 			"Type": response[i].primary_type,
-			"Latitude": response[i].latitude, 
-			"Longitude": response[i].longitude
+			"lat": response[i].latitude, 
+			"lon": response[i].longitude
 		}
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(results[i].lat, results[i].lon),
+			map: map
+		});
 
-		// console.log(object[i]);
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+				infowindow.setContent(results[i].Type);
+				infowindow.open(map, marker);
+			}
+		})(marker, i));
+		// console.log(results[i]);
 	};
 
-	console.log(object);
+	// console.log(results);
 });
+
+// Map part: ------------------------------------------------------------------------
+
+
+var map = new google.maps.Map(document.getElementById('map'), {
+	zoom: 3,
+	center: new google.maps.LatLng(-33.92, 151.25),
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+var infowindow = new google.maps.InfoWindow();
+
+var marker, i;
 
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
@@ -105,12 +128,12 @@ markers.push(new google.maps.Marker({
 
 if (place.geometry.viewport) {
        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
+       bounds.union(place.geometry.viewport);
 
-} else {
-        bounds.extend(place.geometry.location);
-          }
-      });
+   } else {
+   	bounds.extend(place.geometry.location);
+   }
+});
 map.fitBounds(bounds);
 });
 }
