@@ -34,6 +34,7 @@ p {
 }
 .parallax-container .section {
   width: 100%;
+
 }
 
 @media only screen and (max-width : 992px) {
@@ -188,4 +189,6 @@ html, body {
 .list-heading {
   color: #51c9e1;
   font-size: 15px;
+  background-color: #000;
+  opacity: .8;
 }
