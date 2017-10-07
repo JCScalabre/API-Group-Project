@@ -1,4 +1,4 @@
-# Project Name: Crime Conscious - Stay Woke
+# Project Name: Crime Conscious
 
 # Contributors/Roles
 
@@ -7,15 +7,14 @@
 
 ## Front-End: 
 * Julia Reed
-* Nick Vree
-* Edge Quintanilla???
+* Edge Quintanilla
 
 ## Back-End
 * JC Scalabre
+* Nick Vree
 
 ## Scrum Master: 
 * Nick Vree
-
 
 ## Summary
 Our project enables (who) to do (what), by (how)
