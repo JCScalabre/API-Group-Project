@@ -2,31 +2,17 @@ html {
   background-color: #0A233A;
   color: #fff;
   margin: auto;
-  /*font-family: 'Kanit', sans-serif; */
-  
-  /*font-family: 'Bevan', cursive;*/
-
-  /*font-family: 'Coda', cursive;*/
-
-  /*font-family: 'Anton', sans-serif;*/
-
-  /*font-family: 'Teko', sans-serif;*/
-  
   font-family: 'Alef', sans-serif;
 
-
 }
-
 header {
 
 }
-
 p {
   line-height: 2rem;
 }
-
 .parallax-container {
-  min-height: 380px;
+  min-height: 45vh;
   line-height: 0;
   height: auto;
   font-color: white;
@@ -158,32 +144,32 @@ html, body {
 /* Filters */
 
 .infoBox {
-    background: #ffffff !important;
-    font-size: 16px !important;
-    padding: 20px !important;
-    color: #000000 !important;
-    width: 200px !important;
+  background: #ffffff !important;
+  font-size: 16px !important;
+  padding: 20px !important;
+  color: #000000 !important;
+  width: 200px !important;
 }
 
 .infoBox h3 {
-    margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 .filter-container {
   position: relative;
 }
 .filters {
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    top: 30px; 
-    right: 20px;
-    z-index: 99;
-    float: right;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 99;
+  float: right;
 }
 
 .browser-default {
-    color: #000000;
+  color: #000000;
 }
 
 .list-heading {
