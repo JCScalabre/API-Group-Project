@@ -14,33 +14,71 @@ var longitude = -87.631749
 var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
 console.log(locationqueryURL);
 
-// AJAX Request:
-$.ajax({
-	url: locationqueryURL,
-	method: "GET"
-}).done(function(response) {
+// This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
+function locationajax() {
+    $.ajax({
+       url: locationqueryURL,
+       method: "GET"
+   }).done(function(response) {
 
-	console.log(response);
+       console.log(response);
 
-	for (var i = 0; i < response.length; i++) {
-		console.log(response[i].year);
-
-		//if (response[i].arrest === true ) {
+       for (var i = 0; i < response.length; i++) {
 
           marker = new google.maps.Marker({
-             position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
-             map: map
-         });
+           position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+           map: map
+       });
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
-             return function() {
-                infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
-                infowindow.open(map, marker);
-           }
-        })(marker, i));
-      //}
-  };
+           return function() {
+            infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
+            infowindow.open(map, marker);
+        }
+    })(marker, i));
+      };
 
+  });
+};
+
+// This function performs an AJAX request using the location + year URL and puts the crimes for that year on the map:
+function locationyearajax() {
+    $.ajax({
+        url: locationyearqueryURL,
+        method: "GET"
+    }).done(function(response) {
+
+        console.log(response);
+
+        for (var i = 0; i < response.length; i++) {
+
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+            infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        };
+
+    }); 
+};
+
+// When the user presses the submit button:
+$("#submit").on("click", function() {
+    console.log("You clicked the submit button");
+    locationajax ();
+});
+
+// When the Test button is clicked:
+$("#year2001").on("click", function() {
+    console.log("You clicked the year 2001");
+    year = 2001;
+    locationyearajax();
 });
 
 //Places Map with wither proper center, zoom, and style (NV)
@@ -59,7 +97,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
         {
             "color": "#ffffff"
         }
-            
+
         ]
     },
     {
@@ -72,10 +110,10 @@ var map = new google.maps.Map(document.getElementById('map'), {
         {
             "lightness": 13
         },
-            {
-                "visibility": "off"
-                
-            }
+        {
+            "visibility": "off"
+
+        }
         ]
     },
     {
@@ -112,14 +150,14 @@ var map = new google.maps.Map(document.getElementById('map'), {
         ]
     },
     {
-            "featureType": "poi",
-            "elementType": "labels.icon",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
+        "featureType": "poi",
+        "elementType": "labels.icon",
+        "stylers": [
+        {
+            "visibility": "off"
+        }
+        ]
+    },
     {
         "featureType": "poi",
         "elementType": "geometry",
@@ -132,17 +170,17 @@ var map = new google.maps.Map(document.getElementById('map'), {
             "lightness": 5
         },
 
-            {
-                "color": "#0c4152"
-            },
-            {
-                "lightness": 5
+        {
+            "color": "#0c4152"
+        },
+        {
+            "lightness": 5
 
-            },
-            {
-                "visibility": "off"
-                
-            }
+        },
+        {
+            "visibility": "off"
+
+        }
         ]
     },
     {
@@ -205,9 +243,9 @@ var map = new google.maps.Map(document.getElementById('map'), {
             "color": "#146474"
         },
 
-            {
-                "color": "#51c9e1"
-            }
+        {
+            "color": "#51c9e1"
+        }
 
         ]
     },
@@ -310,7 +348,7 @@ map.fitBounds(bounds);
     //         var $target = $(event.target);
     //         var type = $target.data('filterby');
     //         var value = $target.data('filtervalue');
-            
+
     //         $.each(map.markers, function () {
     //             if (this.filter[type] == value) {
     //                 if (this.map == null) {
@@ -348,7 +386,7 @@ function buildDropDownOptions(){
 
     //build dropdown options for Year
     for(var j = 2001; j<=currentDate.getFullYear(); j++){
-        
+
         var newOption = $('<option>')
         newOption.html(j)
         newOption.attr("value", j)
@@ -357,7 +395,7 @@ function buildDropDownOptions(){
 
     //build dropdown options for Radius
     for(var j=0; j<radiusOptions.length; j++){
-        
+
         var newOption = $('<option>')
         newOption.html(radiusOptions[j] + " miles")
         newOption.attr("value", radiusOptions[j]*1609.34)
