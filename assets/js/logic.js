@@ -34,7 +34,7 @@ $.ajax({
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
              return function() {
-                infowindow.setContent(response[i].primary_type);
+                infowindow.setContent("<p>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
                 infowindow.open(map, marker);
             }
         })(marker, i));
@@ -42,6 +42,8 @@ $.ajax({
   };
 
 });
+
+//Places Map with wither proper center, zoom, and style (NV)
 
 var map = new google.maps.Map(document.getElementById('map'), {
 	zoom: 12,
@@ -330,6 +332,8 @@ var currentDate = new Date()
 
 //***//Functions - Don't Delete
 
+
+//Builds drop down options
 
 function buildDropDownOptions(){
 
