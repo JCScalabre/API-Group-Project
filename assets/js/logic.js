@@ -34,7 +34,7 @@ $.ajax({
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
              return function() {
-                infowindow.setContent("<p>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
+                infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
                 infowindow.open(map, marker);
             }
         })(marker, i));
@@ -327,7 +327,7 @@ map.fitBounds(bounds);
 //***//Global Variables - Don't Delete
 
 var crimeOptions = ["ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
-var radiusOptions = [.5,1,3,5,10]
+var radiusOptions = [.5,1,2,3]
 var currentDate = new Date()
 
 //***//Functions - Don't Delete
