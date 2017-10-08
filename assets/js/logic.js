@@ -6,7 +6,7 @@
 
 // Crimes by location:
 // Radius in meters:
-var radius = 100;
+var radius = 300;
 // Lat and Long:
 var latitude = 41.87073
 var longitude = -87.631749
@@ -25,7 +25,7 @@ $.ajax({
 	for (var i = 0; i < response.length; i++) {
 		console.log(response[i].year);
 
-		if (response[i].arrest === true ) {
+		//if (response[i].arrest === true ) {
 
           marker = new google.maps.Marker({
              position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
@@ -36,9 +36,9 @@ $.ajax({
              return function() {
                 infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
                 infowindow.open(map, marker);
-            }
+           }
         })(marker, i));
-      }
+      //}
   };
 
 });
@@ -359,8 +359,8 @@ function buildDropDownOptions(){
     for(var j=0; j<radiusOptions.length; j++){
         
         var newOption = $('<option>')
-        newOption.html(radiusOptions[j])
-        newOption.attr("value", radiusOptions[j])
+        newOption.html(radiusOptions[j] + " miles")
+        newOption.attr("value", radiusOptions[j]*1609.34)
         $("#radius-dropdown").append(newOption)
     }
 }
