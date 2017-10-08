@@ -6,16 +6,17 @@
 
 // Crimes by location:
 // Radius in meters:
-var radius = 300;
+var radius = 100;
 // Lat and Long:
 var latitude = 41.87073
 var longitude = -87.631749
 
-var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
-console.log(locationqueryURL);
 
 // This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
 function locationajax() {
+
+    var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
+
     $.ajax({
        url: locationqueryURL,
        method: "GET"
@@ -37,12 +38,14 @@ function locationajax() {
         }
     })(marker, i));
       };
-
   });
 };
 
 // This function performs an AJAX request using the location + year URL and puts the crimes for that year on the map:
 function locationyearajax() {
+
+    var locationyearqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")&year=" + year; 
+
     $.ajax({
         url: locationyearqueryURL,
         method: "GET"
@@ -59,12 +62,11 @@ function locationyearajax() {
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-            infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
+                    infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
                     infowindow.open(map, marker);
                 }
             })(marker, i));
         };
-
     }); 
 };
 
@@ -77,7 +79,7 @@ $("#submit").on("click", function() {
 // When the Test button is clicked:
 $("#year2001").on("click", function() {
     console.log("You clicked the year 2001");
-    year = 2001;
+    year = 2005;
     locationyearajax();
 });
 
