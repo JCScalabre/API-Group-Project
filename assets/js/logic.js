@@ -73,7 +73,7 @@ function locationyearajax() {
 // When the user presses the submit button:
 $("#submit").on("click", function() {
     console.log("You clicked the submit button");
-    locationajax ();
+    locationajax();
 });
 
 // When the Test button is clicked:
@@ -81,6 +81,23 @@ $("#year2001").on("click", function() {
     console.log("You clicked the year 2001");
     year = 2005;
     locationyearajax();
+});
+
+// When the user selects a year from the drop down:
+$("#year-dropdown").on("change", function() {
+    var selectedYear = $("#year-dropdown :selected").attr("value");
+    console.log("you changed the year drop down " + selectedYear);
+   
+    if (selectedYear === "2002") {
+        year = 2002;
+        locationyearajax();
+    };
+
+    if (selectedYear === "2001") {
+        year = 2001;
+        locationyearajax();
+    };
+    
 });
 
 //Places Map with wither proper center, zoom, and style (NV)
