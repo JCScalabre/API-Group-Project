@@ -1,7 +1,7 @@
 // Global variables: ----------------------------------------
 
 // Radius in meters:
-var radius = 200;
+var radius = 500;
 // Lat and Long:
 var latitude = 41.87073
 var longitude = -87.631749
@@ -330,19 +330,16 @@ var marker, i;
 
 //***//Global Variables - Don't Delete
 
-var crimeOptions = ["ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
+
+var crimeOptions = ["ANY TYPE","ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
 var radiusOptions = [.5,1,2,3]
 var currentDate = new Date()
 
-//***//Functions - Don't Delete
-
-
 //Builds drop down options
+function buildDropDownOptions() {
 
-function buildDropDownOptions(){
-
-    //build dropdown options for Type of Crime
-    for(var j = 0; j<crimeOptions.length; j++){
+    // Build dropdown options for Type of Crime
+    for(var j = 0; j < crimeOptions.length; j++) {
 
         var newOption = $('<option>')
         newOption.html(crimeOptions[j])
@@ -350,8 +347,8 @@ function buildDropDownOptions(){
         $("#crime-type-dropdown").append(newOption)
     }
 
-    //build dropdown options for Year
-    for(var j = 2001; j<=currentDate.getFullYear(); j++){
+    // Build dropdown options for Year
+    for(var j = 2001; j <= currentDate.getFullYear(); j++) {
 
         var newOption = $('<option>')
         newOption.html(j)
@@ -359,8 +356,8 @@ function buildDropDownOptions(){
         $("#year-dropdown").append(newOption)
     }
 
-    //build dropdown options for Radius
-    for(var j=0; j<radiusOptions.length; j++){
+    // Build dropdown options for Radius
+    for(var j=0; j < radiusOptions.length; j++) {
 
         var newOption = $('<option>')
         newOption.html(radiusOptions[j] + " miles")
@@ -368,6 +365,7 @@ function buildDropDownOptions(){
         $("#radius-dropdown").append(newOption)
     }
 }
+
 
 
 function returnLatLong(){
@@ -406,7 +404,3 @@ function returnLatLong(){
 //***//Startup Logic
 
 buildDropDownOptions();
-
-
-
-//***//Delete -- ??
