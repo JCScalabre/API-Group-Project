@@ -307,12 +307,20 @@
             method: "GET"
         }).done(function(response) {
 
+            var locationSelectedImage = 'assets/images/blue-marker.png'
+
+            var maker = new google.maps.Marker({
+                    position: new google.maps.LatLng(latitude, longitude),
+                    map: map,
+                    icon: locationSelectedImage
+                });
+
 
             console.log(response);
 
             for (var i = 0; i < response.length; i++) {
 
-                var marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                     position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
                     map: map
                 });
@@ -326,7 +334,8 @@
                             + response[i].primary_type
                             + "</h4><br>"
                             + moment(response[i].date).format("MMMM D YYYY")
-                            + "<br><br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank' class='btn'> Submit a tip </a> </p>"  );
+                          //  + "<br><br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank' class='btn'> Submit a tip </a> </p>"  
+                          );
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
