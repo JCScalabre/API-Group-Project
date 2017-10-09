@@ -1,10 +1,10 @@
 // Global variables: ----------------------------------------
 
 // Radius in meters:
-var radius = 500;
+var radius = 100;
 // Lat and Long:
-var latitude = 41.87073
-var longitude = -87.631749
+var latitude;
+var longitude;
 var selectedYear;
 var selectedType;
 var gmarkers = [];
@@ -21,10 +21,9 @@ function removeMarkers() {
 
 // This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
 function locationajax() {
-      returnLatLong()
-
-
+    
     var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
+    console.log(locationqueryURL);
 
     $.ajax({
         url: locationqueryURL,
@@ -53,9 +52,6 @@ function locationajax() {
 
 // This function performs an AJAX request using the location + year URL and puts the crimes for that year on the map:
 function locationyearajax() {
-
-          returnLatLong()
-
 
     var locationyearqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")&year=" + selectedYear; 
     console.log(locationyearqueryURL);
@@ -119,30 +115,34 @@ function locationtypeajax() {
 // When the user presses the submit button:
 $("#submit").on("click", function() {
     console.log("You clicked the submit button");
-    locationajax();
-});
-
-// When the Test button is clicked:
-$("#year2001").on("click", function() {
-    console.log("You clicked the test button");
     removeMarkers();
+    returnLatLong();
 });
 
 // When the user selects a year from the drop down:
 $("#year-dropdown").on("change", function() {
     selectedYear = $("#year-dropdown :selected").attr("value");
+    selectedType = $("#crime-type-dropdown :selected").attr("value");
+    console.log(selectedType);
+    if (selectedYear === "All") {
+    removeMarkers();
+    locationajax();        
+    } else {
     console.log("You changed the year to: " + selectedYear);
     removeMarkers();
-    locationyearajax();
+    locationyearajax();        
+    } 
 });
 
 // When the user selects a type from the drop down:
 $("#crime-type-dropdown").on("change", function() {
     selectedType = $("#crime-type-dropdown :selected").attr("value");
-    console.log("You changed the year to: " + selectedType);
+    console.log("You changed the type to: " + selectedType);
     removeMarkers();
     locationtypeajax();
 });
+
+$("#year-dropdown")
 
 //Places Map with wither proper center, zoom, and style (NV)
 var map = new google.maps.Map(document.getElementById('map'), {
@@ -366,35 +366,26 @@ function buildDropDownOptions() {
     }
 }
 
-
-
-function returnLatLong(){
+function returnLatLong() {
 
     selectedAddress = $("#user-locate").val().trim()
 
-    console.log(selectedAddress)
+    console.log("You are searching for: " + selectedAddress)
 
     var latLongQuery = "https://maps.googleapis.com/maps/api/geocode/json?address=" + selectedAddress + "&key=AIzaSyAeLu14HV0oKo1YYiceQ30EIFOGuBJtvXk"
-
-    console.log("returnran")
 
     $.ajax({
         url: latLongQuery,
         method: "GET"
-    }).done(function(response) {
+    }).done(function(response) {  
 
-    console.log(response.results[0].geometry.location.lat);
-    console.log(response.results[0].geometry.location.lng);    
+    longitude = response.results[0].geometry.location.lng;
+    latitude = response.results[0].geometry.location.lat;
 
-    longitude = response.results[0].geometry.location.lat;
-    latitude = response.results[0].geometry.location.lng;
+    console.log("Longitude of search: " + longitude)
+    console.log("Latitude of search: " + latitude)
 
-    console.log(longitude)
-    console.log(latitude)
-
-    
-
-
+    locationajax();
 
     });
 
