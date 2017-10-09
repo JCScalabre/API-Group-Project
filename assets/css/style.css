@@ -71,10 +71,6 @@ html, body {
   font-weight: 300;
 }
 
-.gm-style-iw {
-  color: #000;
-}
-
 #infowindow-content .title {
   font-weight: bold;
 }
@@ -143,13 +139,6 @@ html, body {
 
 /* Filters */
 
-.infoBox {
-  background: #ffffff !important;
-  font-size: 16px !important;
-  padding: 20px !important;
-  color: #000000 !important;
-  width: 200px !important;
-}
 
 .infoBox h3 {
   margin-top: 0 !important;
@@ -177,4 +166,30 @@ html, body {
   font-size: 15px;
   background-color: #000;
   opacity: .8;
+}
+
+.infoBox {
+  background: #grey !important;
+  font-size: 16px !important;
+  padding: 10px !important;
+
+  color: #000000 !important;
+  width: 200px !important;
+}
+
+.infoBox h4 {
+  margin-top: 0 !important;
+  background-color: #51c9e1 !important;
+  display: block;
+}
+
+.gm-style-iw {
+   width: 250px !important;
+   height:30vh;
+   top: 0 !important;
+   left: 0 !important;
+   background-color: #51c9e1;
+   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+   border: 1px solid rgba(72, 181, 233, 0.6);
+   border-radius: 2px 2px 0 0;
 }

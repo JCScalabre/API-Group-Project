@@ -13,6 +13,8 @@ var selectedType;
 var gmarkers = [];
 var selectedAddress; 
 var queryURL;
+
+
 // ------------------------------------ FUNCTIONS: ----------------------------------------
 
 //Builds drop down options:
@@ -284,7 +286,13 @@ function ajax() {
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-                    infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
+                    infowindow.setContent(
+                        "<div class = 'infoBox'>"
+                        + "<h4>"
+                        + response[i].primary_type
+                        + "</h4><br>"
+                        + moment(response[i].date).format("MMMM D YYYY")
+                        + "<br><br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank' class='btn'> Submit a tip </a> </p>"  );
                     infowindow.open(map, marker);
                 }
             })(marker, i));
@@ -376,3 +384,25 @@ $("#type-dropdown").on("change", function() {
 
 }
 });
+
+//Custom styling for info window
+    google.maps.event.addListener(infowindow, 'domready', function() {
+
+       // Reference to the DIV which receives the contents of the infowindow using jQuery
+       var iwOuter = $('.gm-style-iw');
+
+       var divMapstyle = $('.gm-style')
+       /* The DIV we want to change is above the .gm-style-iw DIV.
+        * So, we use jQuery and create a iwBackground variable,
+        * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+        */
+       var iwBackground = iwOuter.prev();
+       divMapstyle.children(':nth-child(1)').style({'background-color' : 'grey !important'});
+       // Remove the background shadow DIV
+       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+       // Remove the white background DIV
+       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+
+    });
