@@ -1,7 +1,7 @@
 // Global variables: ----------------------------------------
 
 // Radius in meters:
-var radius = 200;
+var radius = 500;
 // Lat and Long:
 var latitude = 41.87073
 var longitude = -87.631749
@@ -321,118 +321,15 @@ var infowindow = new google.maps.InfoWindow();
 
 var marker, i;
 
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-function initAutocomplete() {
-	var map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 41.8781, lng:-87.6298},
-		zoom: 13,
-		mapTypeId: 'roadmap'
-	});
-
-// Create the search box and link it to the UI element.
-var input = document.getElementById('pac-input');
-var searchBox = new google.maps.places.SearchBox(input);
-map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-// Bias the SearchBox results towards current map's viewport.
-map.addListener('bounds_changed', function() {
-	searchBox.setBounds(map.getBounds());
-});
-
-var markers = [];
-
-// Listen for the event fired when the user selects a prediction and retrieve
-// more details for that place.
-searchBox.addListener('places_changed', function() {
-	var places = searchBox.getPlaces();
-
-	if (places.length == 0) {
-		return;
-	}
-
-// Clear out the old markers.
-markers.forEach(function(marker) {
-	marker.setMap(null);
-});
-markers = [];
-
-// For each place, get the icon, name and location.
-var bounds = new google.maps.LatLngBounds();
-places.forEach(function(place) {
-	if (!place.geometry) {
-		console.log("Returned place contains no geometry");
-		return;
-	}
-	var icon = {
-		url: place.icon,
-		size: new google.maps.Size(71, 71),
-		origin: new google.maps.Point(0, 0),
-		anchor: new google.maps.Point(17, 34),
-		scaledSize: new google.maps.Size(25, 25)
-	};
-
-// Create a marker for each place.
-markers.push(new google.maps.Marker({
-	map: map,
-	icon: icon,
-	title: place.name,
-	position: place.geometry.location
-}));
-
-if (place.geometry.viewport) {
-       // Only geocodes have viewport.
-       bounds.union(place.geometry.viewport);
-
-   } else {
-   	bounds.extend(place.geometry.location);
-   }
-});
-map.fitBounds(bounds);
-});
-}
-    //     // Filtering links click handler, it uses the filtering values (data-filterby and data-filtervalue)
-    //     // to filter the markers based on the filter (custom) property set when the marker is created.
-    //     $(document).on('click', '.filters a', function (event) {
-    //         event.preventDefault();
-    //         var $target = $(event.target);
-    //         var type = $target.data('filterby');
-    //         var value = $target.data('filtervalue');
-
-    //         $.each(map.markers, function () {
-    //             if (this.filter[type] == value) {
-    //                 if (this.map == null) {
-    //                     this.setMap(map);
-    //                 }
-    //             } else {
-    //                 this.setMap(null);
-    //             }
-    //         });
-    //     });
-    // };
-
-
-//***//Global Variables - Don't Delete
-
-var crimeOptions = ["ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
+var crimeOptions = ["ANY TYPE","ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
 var radiusOptions = [.5,1,2,3]
 var currentDate = new Date()
 
-//***//Functions - Don't Delete
-
-
 //Builds drop down options
+function buildDropDownOptions() {
 
-function buildDropDownOptions(){
-
-    //build dropdown options for Type of Crime
-    for(var j = 0; j<crimeOptions.length; j++){
+    // Build dropdown options for Type of Crime
+    for(var j = 0; j < crimeOptions.length; j++) {
 
         var newOption = $('<option>')
         newOption.html(crimeOptions[j])
@@ -440,8 +337,8 @@ function buildDropDownOptions(){
         $("#crime-type-dropdown").append(newOption)
     }
 
-    //build dropdown options for Year
-    for(var j = 2001; j<=currentDate.getFullYear(); j++){
+    // Build dropdown options for Year
+    for(var j = 2001; j <= currentDate.getFullYear(); j++) {
 
         var newOption = $('<option>')
         newOption.html(j)
@@ -449,8 +346,8 @@ function buildDropDownOptions(){
         $("#year-dropdown").append(newOption)
     }
 
-    //build dropdown options for Radius
-    for(var j=0; j<radiusOptions.length; j++){
+    // Build dropdown options for Radius
+    for(var j=0; j < radiusOptions.length; j++) {
 
         var newOption = $('<option>')
         newOption.html(radiusOptions[j] + " miles")
@@ -459,11 +356,6 @@ function buildDropDownOptions(){
     }
 }
 
-
 //***//Startup Logic
 
 buildDropDownOptions();
-
-
-
-//***//Delete -- ??
