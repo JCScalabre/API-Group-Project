@@ -8,6 +8,7 @@ var longitude = -87.631749
 var selectedYear;
 var selectedType;
 var gmarkers = [];
+var selectedAddress; 
 
 // Functions: ------------------------------------------------
 
@@ -20,6 +21,8 @@ function removeMarkers() {
 
 // This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
 function locationajax() {
+      returnLatLong()
+
 
     var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
 
@@ -50,6 +53,9 @@ function locationajax() {
 
 // This function performs an AJAX request using the location + year URL and puts the crimes for that year on the map:
 function locationyearajax() {
+
+          returnLatLong()
+
 
     var locationyearqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")&year=" + selectedYear; 
     console.log(locationyearqueryURL);
@@ -321,6 +327,10 @@ var infowindow = new google.maps.InfoWindow();
 
 var marker, i;
 
+
+//***//Global Variables - Don't Delete
+
+
 var crimeOptions = ["ANY TYPE","ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"]
 var radiusOptions = [.5,1,2,3]
 var currentDate = new Date()
@@ -355,6 +365,41 @@ function buildDropDownOptions() {
         $("#radius-dropdown").append(newOption)
     }
 }
+
+
+
+function returnLatLong(){
+
+    selectedAddress = $("#user-locate").val().trim()
+
+    console.log(selectedAddress)
+
+    var latLongQuery = "https://maps.googleapis.com/maps/api/geocode/json?address=" + selectedAddress + "&key=AIzaSyAeLu14HV0oKo1YYiceQ30EIFOGuBJtvXk"
+
+    console.log("returnran")
+
+    $.ajax({
+        url: latLongQuery,
+        method: "GET"
+    }).done(function(response) {
+
+    console.log(response.results[0].geometry.location.lat);
+    console.log(response.results[0].geometry.location.lng);    
+
+    longitude = response.results[0].geometry.location.lat;
+    latitude = response.results[0].geometry.location.lng;
+
+    console.log(longitude)
+    console.log(latitude)
+
+    
+
+
+
+    });
+
+}
+
 
 //***//Startup Logic
 
