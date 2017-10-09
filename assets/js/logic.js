@@ -6,11 +6,11 @@
 
 // Crimes by location:
 // Radius in meters:
-var radius = 100;
+var radius = 200;
 // Lat and Long:
 var latitude = 41.87073
 var longitude = -87.631749
-
+var selectedYear;
 
 // This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
 function locationajax() {
@@ -44,7 +44,7 @@ function locationajax() {
 // This function performs an AJAX request using the location + year URL and puts the crimes for that year on the map:
 function locationyearajax() {
 
-    var locationyearqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")&year=" + year; 
+    var locationyearqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")&year=" + selectedYear; 
 
     $.ajax({
         url: locationyearqueryURL,
@@ -85,19 +85,9 @@ $("#year2001").on("click", function() {
 
 // When the user selects a year from the drop down:
 $("#year-dropdown").on("change", function() {
-    var selectedYear = $("#year-dropdown :selected").attr("value");
-    console.log("you changed the year drop down " + selectedYear);
-   
-    if (selectedYear === "2002") {
-        year = 2002;
-        locationyearajax();
-    };
-
-    if (selectedYear === "2001") {
-        year = 2001;
-        locationyearajax();
-    };
-    
+    selectedYear = $("#year-dropdown :selected").attr("value");
+    console.log("You changed the year to: " + selectedYear);
+    locationyearajax();
 });
 
 //Places Map with wither proper center, zoom, and style (NV)
