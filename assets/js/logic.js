@@ -12,11 +12,11 @@ var gmarkers = [];
 // Functions: ------------------------------------------------
 
 // This function removes markers on the map:
-function removeMarkers(){
+function removeMarkers() {
     for( i = 0; i < gmarkers.length; i++){
         gmarkers[i].setMap(null);
     }
-}
+};
 
 // This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
 function locationajax() {
@@ -102,7 +102,7 @@ function locationtypeajax() {
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-                    infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>"  );
+                    infowindow.setContent("<p id = 'info-window'>"+response[i].primary_type+ "<br>" + moment(response[i].date).format("MMMM D YYYY") +"<br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank'> Submit a tip </a> </p>");
                     infowindow.open(map, marker);
                 }
             })(marker, i));
