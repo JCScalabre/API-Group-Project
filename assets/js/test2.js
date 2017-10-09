@@ -350,6 +350,7 @@ $( document ).ready(function() {
 
 
     $("#year-dropdown").on("change", function(){
+        selectedYear = $("#year-dropdown :selected").attr("value");
         returnLatLong()
     })
 
@@ -357,6 +358,7 @@ $( document ).ready(function() {
         selectedType = $("#type-dropdown :selected").attr("value");
         returnLatLong()
     })
+
 
     $("#radius-dropdown").on("change", function(){
         radius = $("#radius-dropdown :selected").attr("value");
