@@ -5,7 +5,7 @@
     var currentDate = new Date();
 
     // Radius in meters:
-    var radius = 100;
+    var radius = 804.672;
     var latitude;
     var longitude;
     var selectedYear = "Any"
@@ -18,7 +18,6 @@
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
   });
-
 
     // ------------------------------------ FUNCTIONS: ----------------------------------------
 
@@ -261,8 +260,9 @@
             method: "GET"
         }).done(function(response) {  
 
-            console.log(response);
-            if (response[0] === undefined) {
+            console.log(response.results[0]);
+            if (response.results[0] === undefined) {
+                console.log("map found nothing");
                 $('#modal1').modal('open');
             }
 
@@ -276,8 +276,6 @@
             ajaxCrimePull()
 
         });
-
-
 
     };
 
@@ -332,7 +330,6 @@
             if (response[0] === undefined) {
                 console.log("No results");
                 $('#modal1').modal('open');
-
             }
 
             //Map the crime locations results (using default marker icon)
@@ -427,11 +424,6 @@ google.maps.event.addListener(infowindow, 'domready', function() {
 
            // Remove the white background DIV
            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
-           
-
-
-
 
        });
 
