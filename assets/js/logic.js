@@ -229,9 +229,9 @@
             ]
         });
 
-        var infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow();
 
-        var marker, i;
+    var marker, i;
 
     // This function removes markers on the map:
     function removeMarkers() {
@@ -262,12 +262,12 @@
             console.log("Longitude of search: " + longitude);
             console.log("Latitude of search: " + latitude);
 
-        createQueryURL()
-        ajaxCrimePull()
+            createQueryURL()
+            ajaxCrimePull()
 
-    });
+        });
 
-      
+
 
     };
 
@@ -279,7 +279,7 @@
             queryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
         }
         else if(selectedYear!= 'Any' & selectedType === 'Any'){
-                    console.log("year not Null")
+            console.log("year not Null")
 
             queryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")&year=" + selectedYear; 
         }
@@ -311,13 +311,17 @@
             //Map the inputted location with a blue marker
             var homeMarkerImage = 'assets/images/blue-marker.png'
             var maker = new google.maps.Marker({
-                    position: new google.maps.LatLng(latitude, longitude),
-                    map: map,
-                    icon: homeMarkerImage
-                });
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+                icon: homeMarkerImage
+            });
 
-
+            // If the search returns no results:
             console.log(response);
+            
+            if (response[0] === undefined) {
+                console.log("No results");
+            }
 
             //Map the crime locations results (using default marker icon)
             for (var i = 0; i < response.length; i++) {
@@ -364,6 +368,13 @@
             returnLatLong()
         });
 
+        // If user hits enter in the input field:
+        $("#user-locate").keypress(function(e) {
+            if (e.keyCode === 13) {
+                returnLatLong()
+            }
+        });
+
 
         $("#year-dropdown").on("change", function(){
             selectedYear = $("#year-dropdown :selected").attr("value");
@@ -385,7 +396,7 @@
 
 
 //Custom styling for info window
-        google.maps.event.addListener(infowindow, 'domready', function() {
+google.maps.event.addListener(infowindow, 'domready', function() {
 
            // Reference to the DIV which receives the contents of the infowindow using jQuery
            var iwOuter = $('.gm-style-iw');
@@ -395,12 +406,12 @@
             * So, we use jQuery and create a iwBackground variable,
             * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
             */
-           var iwBackground = iwOuter.prev();
+            var iwBackground = iwOuter.prev();
            // Remove the background shadow DIV
 
         //divMapstyle.children(':nth-child(1)').style({'background-color' : 'grey !important'});
 
-           iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+        iwBackground.children(':nth-child(2)').css({'display' : 'none'});
 
            // Remove the white background DIV
            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
@@ -410,10 +421,10 @@
 
 
 
-        });
+       });
 
 
-    });
+});
 
 
 
@@ -492,7 +503,7 @@
     // }
     // });
 
-   
+
 
 
     //------------------------   logic.js content pre 05:30 pm 10/9  ----------------------------------------
@@ -522,7 +533,7 @@
 
 // // This function performs an AJAX request using just the location URL and then puts all the crimes on the map:
 // function locationajax() {
-    
+
 //     var locationqueryURL = "https://data.cityofchicago.org/resource/6zsd-86xi.json?$where=within_circle(location,%20" + latitude + ",%20" + longitude + ",%20" + radius + ")"
 //     console.log(locationqueryURL);
 
