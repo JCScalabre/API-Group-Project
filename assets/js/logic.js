@@ -14,6 +14,11 @@
     var selectedAddress; 
     var queryURL;
 
+    $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
 
     // ------------------------------------ FUNCTIONS: ----------------------------------------
 
@@ -256,6 +261,11 @@
             method: "GET"
         }).done(function(response) {  
 
+            console.log(response);
+            if (response[0] === undefined) {
+                $('#modal1').modal('open');
+            }
+
             longitude = response.results[0].geometry.location.lng;
             latitude = response.results[0].geometry.location.lat;
 
@@ -321,6 +331,8 @@
             
             if (response[0] === undefined) {
                 console.log("No results");
+                $('#modal1').modal('open');
+
             }
 
             //Map the crime locations results (using default marker icon)
