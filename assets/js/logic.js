@@ -263,7 +263,7 @@
             console.log("Latitude of search: " + latitude);
 
         createQueryURL()
-        ajax()
+        ajaxCrimePull()
 
     });
 
@@ -300,24 +300,26 @@
 
 
     //produce a list of crimes with the indicated values from the queryURL
-    function ajax() {
+    function ajaxCrimePull() {
 
         $.ajax({
             url: queryURL,
             method: "GET"
         }).done(function(response) {
 
-            var locationSelectedImage = 'assets/images/blue-marker.png'
 
+            //Map the inputted location with a blue marker
+            var homeMarkerImage = 'assets/images/blue-marker.png'
             var maker = new google.maps.Marker({
                     position: new google.maps.LatLng(latitude, longitude),
                     map: map,
-                    icon: locationSelectedImage
+                    icon: homeMarkerImage
                 });
 
 
             console.log(response);
 
+            //Map the crime locations results (using default marker icon)
             for (var i = 0; i < response.length; i++) {
 
                 marker = new google.maps.Marker({
@@ -332,8 +334,13 @@
                             "<div class = 'infoBox'>"
                             + "<h4>"
                             + response[i].primary_type
-                            + "</h4><br>"
+                            + "</h4><br> Date: "
                             + moment(response[i].date).format("MMMM D YYYY")
+                            + "</h4><br> Block: "
+                            + response[i].block
+                            + "</h4><br>"
+
+
                           //  + "<br><br> <a href= 'https://new.tipsubmit.com/#/submit-tip/ChicagoPD' target='_blank' class='btn'> Submit a tip </a> </p>"  
                           );
                         infowindow.open(map, marker);
@@ -374,7 +381,7 @@
             returnLatLong()
         })
 
-    });
+
 
 
 //Custom styling for info window
@@ -389,18 +396,24 @@
             * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
             */
            var iwBackground = iwOuter.prev();
-           divMapstyle.children(':nth-child(1)').style({'background-color' : 'grey !important'});
            // Remove the background shadow DIV
+
+        //divMapstyle.children(':nth-child(1)').style({'background-color' : 'grey !important'});
+
            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
 
            // Remove the white background DIV
            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
 
+           
+
+
+
 
         });
 
 
-
+    });
 
 
 
