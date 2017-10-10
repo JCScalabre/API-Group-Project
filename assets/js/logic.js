@@ -16,8 +16,9 @@
 
     $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
+    $('#modal1').modal();
+    $('#modal2').modal();
+});
 
     // ------------------------------------ FUNCTIONS: ----------------------------------------
 
@@ -261,6 +262,7 @@
         }).done(function(response) {  
 
             console.log(response.results[0]);
+
             if (response.results[0] === undefined) {
                 console.log("map found nothing");
                 $('#modal1').modal('open');
@@ -272,11 +274,23 @@
             console.log("Longitude of search: " + longitude);
             console.log("Latitude of search: " + latitude);
 
-            createQueryURL()
-            ajaxCrimePull()
+            // Longitude west border: -87.774458697 (smaller number)
+            var westlng = -87.774458697
+            // Longitude east border: -87.524543633 (bigger number)
+            var eastlng = -87.524543633
+            // Latitude north border: 42.018900266
+            var northlat = 42.018900266
+            // Latitude sourth border: 41.645075822
+            var southlat = 41.645075822
 
+            if ((longitude >= westlng) && (longitude <= eastlng) && (latitude >= southlat) && (latitude <= northlat)) {
+             createQueryURL();
+             ajaxCrimePull();
+         } else {
+            console.log("Not in range!");
+            $('#modal2').modal('open');
+        }
         });
-
     };
 
     //Set the queryURL for the upcoming Ajax request depending on the selections
@@ -326,11 +340,11 @@
 
             // If the search returns no results:
             console.log(response);
-            
-            if (response[0] === undefined) {
-                console.log("No results");
-                $('#modal1').modal('open');
-            }
+
+            // if (response[0] === undefined) {
+            //     console.log("No results");
+            //     $('#modal1').modal('open');
+            // }
 
             //Map the crime locations results (using default marker icon)
             for (var i = 0; i < response.length; i++) {
