@@ -196,6 +196,7 @@ html, body {
 
 .modal-content {
   color: black;
+  font-size: 18px;
 }
 
 #modalp {
