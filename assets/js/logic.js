@@ -1,7 +1,7 @@
     // ------------------------------------ VARIABLES: ----------------------------------------
 
     var crimeOptions = ["ARSON","ASSAULT","BATTERY","BURGLARY","CONCEALED CARRY LICENSE VIOLATION","CRIMINAL SEXUAL ASSAULT","CRIMINAL DAMAGE","CRIMINAL TRESPASS","DECEPTIVE PRACTICE","HOMICIDE","INTERFERENCE WITH PUBLIC OFFICER","KIDNAPPING","MOTOR VEHICLE THEFT","NARCOTICS","OFFENSE INVOLVING CHILDREN","OTHER OFFENSE","PROSTITUTION","PUBLIC PEACE VIOLATION","ROBBERY","SEX OFFENSE","THEFT","WEAPONS VIOLATION"];
-    var radiusOptions = [.5,1,2,3];
+    var radiusOptions = [1,2,3];
     var currentDate = new Date();
 
     // Radius in meters:
@@ -309,6 +309,201 @@
 
     //produce a list of crimes with the indicated values from the queryURL
     function ajaxCrimePull() {
+
+         var zoomLevel =12; 
+
+        if (radius < 1600){
+                zoomLevel = 15
+        }
+        else if (radius < 3200){
+                zoomLevel = 14
+        }
+        else if (radius < 4800){
+                zoomLevel = 13
+        }
+        else{
+            zoomLevel = 12
+        }
+
+        console.log(zoomLevel)
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: zoomLevel,
+            center: new google.maps.LatLng(latitude, longitude),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles:
+            [
+            {
+                "featureType": "all",
+                "elementType": "labels.text.fill",
+                "stylers": [
+
+                {
+                    "color": "#ffffff"
+                }
+
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 13
+                },
+                {
+                    "visibility": "off"
+
+                }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [
+                {
+                    "color": "#000000"
+                }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                {
+                    "color": "#144b53"
+                },
+                {
+                    "lightness": 14
+                },
+                {
+                    "weight": 1.4
+                }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                {
+                    "color": "#08304b"
+                }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "labels.icon",
+                "stylers": [
+                {
+                    "visibility": "off"
+                }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+
+                {
+                    "color": "#0c4152"
+                },
+                {
+                    "lightness": 5
+                },
+
+                {
+                    "color": "#0c4152"
+                },
+                {
+                    "lightness": 5
+
+                },
+                {
+                    "visibility": "off"
+
+                }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [
+                {
+                    "color": "#000000"
+                }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                {
+                    "color": "#0b434f"
+                },
+                {
+                    "lightness": 25
+                }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry.fill",
+                "stylers": [
+                {
+                    "color": "#000000"
+                }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                {
+                    "color": "#0b3d51"
+                },
+                {
+                    "lightness": 16
+                }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                {
+                    "color": "#000000"
+                }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+
+                {
+                    "color": "#146474"
+                },
+
+                {
+                    "color": "#51c9e1"
+                }
+
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                {
+                    "color": "#021019"
+                }
+                ]
+            }
+            ]
+        });
 
         $.ajax({
             url: queryURL,
