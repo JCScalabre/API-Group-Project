@@ -3,8 +3,8 @@ html {
   color: #fff;
   margin: auto;
   font-family: 'Alef', sans-serif;
-
 }
+
 header {
 
 }
@@ -192,4 +192,12 @@ html, body {
    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
    border: 1px solid rgba(72, 181, 233, 0.6);
    border-radius: 2px 2px 0 0;
+}
+
+.modal-content {
+  color: black;
+}
+
+#modalp {
+  color: rgba(0,0,0,0.71);
 }
