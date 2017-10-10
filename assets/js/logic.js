@@ -526,7 +526,7 @@
 
 
             //Map the inputted location with a blue marker
-            var homeMarkerImage = 'assets/images/blue-marker.png'
+            var homeMarkerImage = 'assets/images/star.png'
             var maker = new google.maps.Marker({
                 position: new google.maps.LatLng(latitude, longitude),
                 map: map,
