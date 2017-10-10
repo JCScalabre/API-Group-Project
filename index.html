@@ -36,7 +36,7 @@
 </div>
 </div>
 
-  <!-- Error: Map didn't find anything modal: -->
+  <!-- Error 1: Map didn't find anything modal: -->
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Oops!</h4>
@@ -47,11 +47,22 @@
     </div>
   </div>  
 
-  <!-- Error: Location not in chicago modal: -->
+  <!-- Error 2: Location not in chicago modal: -->
   <div id="modal2" class="modal">
     <div class="modal-content">
       <h4>Oops!</h4>
       <p id="modalp">It looks like you searched for something outside of Chicago. </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+    </div>
+  </div>
+
+  <!-- Error 3: No crimes of this type or year modal: -->
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4>Phew</h4>
+      <p id="modal3p">There we no crimes of this type during this year.</p>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
